@@ -1,0 +1,38 @@
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    background-color: #ffffff;
+}
+
+.title {
+    display: inherit;
+    align-items: center;
+    gap: 10px;
+}
+
+.btnAdd {
+    border-radius: 8px;
+    padding: 2px;
+}
+
+.bgrMenu {
+    border-radius: 5px;
+}
+
+@media (min-width: 768px) {
+    .bgrMenu {
+        display: none;
+    }
+}
