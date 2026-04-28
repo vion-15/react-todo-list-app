@@ -27,12 +27,49 @@
     padding: 2px;
 }
 
-.bgrMenu {
-    border-radius: 5px;
+.modal {
+    display: flex;
+    flex-direction: column;
 }
 
-@media (min-width: 768px) {
-    .bgrMenu {
-        display: none;
-    }
+.allTask {
+    padding: 10px;
+    margin: 10px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    height: 100vw;
 }
+
+.modal form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    gap: 10px;
+}
+
+.modal form div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal form input {
+    padding: 6px;
+}
+
+.modal form div input {
+    height: 31px;
+}
+
+.modal button {
+    padding: 6px;
+    margin: 10px;
+}
+
+.modal form div button {
+    width: 100%;
+}
+
