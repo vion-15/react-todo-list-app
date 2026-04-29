@@ -37,7 +37,23 @@
     margin: 10px;
     background-color: #ffffff;
     border-radius: 6px;
-    height: 100vw;
+    max-height: 100vw;
+    overflow-y: auto;
+    scroll-behavior: auto;
+}
+
+.allTask li {
+    margin-left: 10%;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.item button {
+    border-radius: 5px;
 }
 
 .modal form {
