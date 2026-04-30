@@ -27,6 +27,11 @@
     padding: 2px;
 }
 
+.modal-container {
+    width: 100%;
+    background-color: white;
+}
+
 .modal {
     display: flex;
     flex-direction: column;
@@ -66,7 +71,15 @@
     gap: 10px;
 }
 
-.modal form div {
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+}
+
+.container-task {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -74,18 +87,24 @@
 
 .modal form input {
     padding: 6px;
+    width: 100%;
 }
 
 .modal form div input {
     height: 31px;
+    
 }
 
-.modal button {
+.saveBtn {
     padding: 6px;
     margin: 10px;
 }
 
-.modal form div button {
-    width: 100%;
+.delBtn {
+    padding: 6px;
 }
 
+.addBtn {
+    padding: 6px;
+    max-width: 100%;
+}

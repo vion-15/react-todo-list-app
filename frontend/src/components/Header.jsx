@@ -6,9 +6,20 @@ export default function Header() {
     const [showModal, setShowModal] = useState(false);
     const [task, setTask] = useState("");
     const [tasks, setTasks] = useState([]);
+    const [title, setTitle] = useState("");
+    const [todo, setTodo] = useState({});
 
     const handleChange = (e) => {
         setTask(e.target.value);
+    }
+
+    const handleTitle = (e) => {
+        setTitle(e.target.value);
+    }
+
+    const addTodo = (e) => {
+        e.preventDefault();
+        setTodo({ ...todo, title, tasks });
     }
 
     const addTask = (e) => {
@@ -41,29 +52,35 @@ export default function Header() {
 
             <section>
                 {showModal && (
-                    <div className="modal">
-                        <form action="">
-                            <input type="text" placeholder="Title..." />
-                            <div>
-                                <input type="text" placeholder="Task..." value={task} onChange={handleChange} />
-                                <button onClick={addTask}>Add</button>
-                            </div>
-                        </form>
-                        <div className="allTask">
-                            <h4>All Task :</h4>
-                            <ol>
-                                {tasks.map((t, i) => (
-                                    <li key={i}>
-                                        <div className="item">
-                                            {t}
-                                            <button onClick={() => deleteTask(i)}>X</button>
+                    <>
+                        <div className="container">
+                            <div className="modal-container">
+                                <div className="modal">
+                                    <form action="">
+                                        <input type="text" placeholder="Title..." value={title} onChange={handleTitle} />
+                                        <div className="container-task">
+                                            <input type="text" placeholder="Task..." value={task} onChange={handleChange} className="inputTask" />
+                                            <button onClick={addTask} className="addBtn">Add</button>
                                         </div>
-                                    </li>
-                                ))}
-                            </ol>
+                                    </form>
+                                    <div className="allTask">
+                                        <h4>All Task :</h4>
+                                        <ol>
+                                            {tasks.map((t, i) => (
+                                                <li key={i}>
+                                                    <div className="item">
+                                                        {t}
+                                                        <button onClick={() => deleteTask(i)} className="delBtn">X</button>
+                                                    </div>
+                                                </li>
+                                            ))}
+                                        </ol>
+                                    </div>
+                                    <button onClick={addTodo} className="saveBtn">Save</button>
+                                </div>
+                            </div>
                         </div>
-                        <button>Save</button>
-                    </div>
+                    </>
                 )}
             </section>
 
