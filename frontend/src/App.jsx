@@ -1,4 +1,5 @@
 import './App.css'
+import CardTask from './components/CardTask'
 import Header from './components/Header'
 
 function App() {
@@ -6,7 +7,9 @@ function App() {
   return (
     <>
     <Header />
-    <section></section>
+    <section>
+      <CardTask />
+    </section>
     <section></section>
     </>
   )

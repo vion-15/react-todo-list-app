@@ -108,3 +108,12 @@
     padding: 6px;
     max-width: 100%;
 }
+
+.closeBtn {
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    padding: 6px;
+    border-radius: 5px;
+    background-color: white;
+}

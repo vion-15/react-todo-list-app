@@ -7,7 +7,7 @@ export default function Header() {
     const [task, setTask] = useState("");
     const [tasks, setTasks] = useState([]);
     const [title, setTitle] = useState("");
-    const [todo, setTodo] = useState({});
+    const [todo, setTodo] = useState([]);
 
     const handleChange = (e) => {
         setTask(e.target.value);
@@ -19,7 +19,16 @@ export default function Header() {
 
     const addTodo = (e) => {
         e.preventDefault();
-        setTodo({ ...todo, title, tasks });
+
+        const data = {
+            title,
+            tasks,
+        }
+
+        setTodo([ ...todo, data ]);
+        setTitle("");
+        setTasks([]);
+        setShowModal(false);
     }
 
     const addTask = (e) => {
@@ -27,6 +36,8 @@ export default function Header() {
         setTasks([...tasks, task]);
         setTask("");
     }
+
+    console.log(todo);
 
     function handleModal() {
         setShowModal(true);
@@ -56,6 +67,7 @@ export default function Header() {
                         <div className="container">
                             <div className="modal-container">
                                 <div className="modal">
+                                    <button onClick={() => setShowModal(false)} className="closeBtn">X</button>
                                     <form action="">
                                         <input type="text" placeholder="Title..." value={title} onChange={handleTitle} />
                                         <div className="container-task">
