@@ -1,16 +1,17 @@
 import { useState } from "react"
 import "./style/Header.css"
+import CardTask from "./CardTask";
 
 export default function Header() {
 
     const [showModal, setShowModal] = useState(false);
-    const [task, setTask] = useState("");
-    const [tasks, setTasks] = useState([]);
+    const [taskInput, setTaskInput] = useState("");
+    const [taskList, setTaskList] = useState([]);
     const [title, setTitle] = useState("");
     const [todo, setTodo] = useState([]);
 
     const handleChange = (e) => {
-        setTask(e.target.value);
+        setTaskInput(e.target.value);
     }
 
     const handleTitle = (e) => {
@@ -21,31 +22,27 @@ export default function Header() {
         e.preventDefault();
 
         const data = {
+            id: crypto.randomUUID(),
             title,
-            tasks,
+            taskList,
+            completed: false,
         }
 
-        setTodo([ ...todo, data ]);
+        setTodo(prev => [ ...prev, data ]);
         setTitle("");
-        setTasks([]);
+        setTaskList([]);
         setShowModal(false);
     }
 
-    const addTask = (e) => {
-        e.preventDefault();
-        setTasks([...tasks, task]);
-        setTask("");
+    const addTask = () => {
+        if (!taskInput.trim()) return;
+        setTaskList(prev => [...prev, taskInput]);
+        setTaskInput("");
     }
 
-    console.log(todo);
-
-    function handleModal() {
-        setShowModal(true);
-    };
-
     const deleteTask = (i) => {
-        const newTasks = tasks.filter((_, index) => index !== i)
-        setTasks(newTasks);
+        const newTasks = taskList.filter((_, index) => index !== i)
+        setTaskList(newTasks);
     }
 
 
@@ -56,7 +53,7 @@ export default function Header() {
                     <span> | </span>
                     <span>Dashboard</span>
                 </div>
-                <button className="material-symbols-outlined btnAdd" onClick={handleModal}>
+                <button className="material-symbols-outlined btnAdd" onClick={() => setShowModal(true)}>
                     add
                 </button>
             </div>
@@ -68,18 +65,18 @@ export default function Header() {
                             <div className="modal-container">
                                 <div className="modal">
                                     <button onClick={() => setShowModal(false)} className="closeBtn">X</button>
-                                    <form action="">
+                                    <form>
                                         <input type="text" placeholder="Title..." value={title} onChange={handleTitle} />
                                         <div className="container-task">
-                                            <input type="text" placeholder="Task..." value={task} onChange={handleChange} className="inputTask" />
-                                            <button onClick={addTask} className="addBtn">Add</button>
+                                            <input type="text" placeholder="Task..." value={taskInput} onChange={handleChange} className="inputTask" />
+                                            <button type="button" onClick={addTask} className="addBtn">Add</button>
                                         </div>
                                     </form>
                                     <div className="allTask">
                                         <h4>All Task :</h4>
                                         <ol>
-                                            {tasks.map((t, i) => (
-                                                <li key={i}>
+                                            {taskList.map((t, i) => (
+                                                <li key={t.id}>
                                                     <div className="item">
                                                         {t}
                                                         <button onClick={() => deleteTask(i)} className="delBtn">X</button>
@@ -95,7 +92,8 @@ export default function Header() {
                     </>
                 )}
             </section>
-
+            
+            <CardTask data={todo} />
         </>
     )
 }

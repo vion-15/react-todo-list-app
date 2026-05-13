@@ -1,8 +1,8 @@
 
-export default function CardTask() {
+export default function CardTask(props) {
     return (
         <div>
-            Ini adalah letak Card Task
+            {console.log(props.title)}
         </div>
     )
 }
